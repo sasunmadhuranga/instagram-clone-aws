@@ -16,14 +16,11 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                checkout([
-                $class: 'GitSCM',
-                branches: [[name: '*/master']],
-                userRemoteConfigs: [[
-                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
+                git(
+                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git',
+                    branch: 'master',
                     credentialsId: 'github-creds'
-                ]]
-                ])
+                )
             }
         }
 
@@ -63,7 +60,7 @@ pipeline {
             }
         }
 
-        // ================ FRONTEND ================
+        // ================= FRONTEND =================
 
         stage('Build Frontend') {
             steps {
