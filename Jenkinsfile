@@ -12,7 +12,13 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
+                checkout([
+                $class: 'GitSCM',
+                branches: [[name: '*/master']],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
+                ]]
+                ])
             }
         }
 
@@ -65,7 +71,7 @@ pipeline {
 
         stage('Deploy Frontend to S3') {
             steps {
-                sh 'aws s3 sync client/build/ s3://$S3_BUCKET'
+                sh 'aws s3 sync client/build/ s3://$AWS_BUCKET_NAME'
             }
         }
     }
