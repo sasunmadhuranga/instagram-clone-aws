@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
-    }
-
     environment {
         AWS_REGION = "us-east-1"
         ECR_REPO = "630596767614.dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend"
@@ -16,17 +12,10 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                checkout([
-                $class: 'GitSCM',
-                branches: [[name: '*/master']],
-                userRemoteConfigs: [[
+                git branch: 'master',
                     url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
-                ]]
-                ])
             }
         }
-
-        // ================= BACKEND =================
 
         stage('Build Backend Image') {
             steps {
@@ -62,8 +51,6 @@ pipeline {
             }
         }
 
-        // ================ FRONTEND ================
-
         stage('Build Frontend') {
             steps {
                 dir('client') {
@@ -75,7 +62,9 @@ pipeline {
 
         stage('Deploy Frontend to S3') {
             steps {
-                sh 'aws s3 sync client/build/ s3://$AWS_BUCKET_NAME'
+                sh """
+                aws s3 sync client/build/ s3://${AWS_BUCKET_NAME} --delete
+                """
             }
         }
     }
