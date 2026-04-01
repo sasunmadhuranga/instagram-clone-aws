@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     environment {
         AWS_REGION = "us-east-1"
         ECR_REPO = "630596767614.dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend"
