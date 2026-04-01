@@ -13,7 +13,8 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 git branch: 'master',
-                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
+                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git',
+                    credentialsId: 'github-creds'
             }
         }
 
