@@ -1,0 +1,36 @@
+# ================================
+# Node/Client folder
+# ================================
+client/node_modules/
+client/dist/
+client/build/
+client/.env
+
+# ================================
+# Server folder
+# ================================
+server/node_modules/
+server/dist/
+server/.env
+server/.DS_Store
+
+# ================================
+# Terraform folder
+# ================================
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/terraform.tfstate.d/
+terraform/crash.log
+terraform/*.tfplan
+terraform/*.zip
+terraform/.DS_Store
+
+# ================================
+# General OS & IDE files
+# ================================
+*.log
+*.swp
+*.DS_Store
+.idea/
+.vscode/
