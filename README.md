@@ -66,6 +66,7 @@ Deployment
 client/     → React frontend
 server/     → Express backend
 
+
 📸 Screenshots
 <p align="center">
   <img src="screenshots/2.png" width="600"/>
