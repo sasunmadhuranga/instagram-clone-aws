@@ -21,6 +21,7 @@ pipeline {
                 branches: [[name: '*/master']],
                 userRemoteConfigs: [[
                     url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git'
+                    credentialsId: 'github-creds'
                 ]]
                 ])
             }
