@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 const API_URL = process.env.REACT_APP_API_URL;
 export const uploadProfilePhoto = async (file, token, setForm, closeModal) => {
   const formData = new FormData();
-  formData.append("photo", file);
+  formData.append("file", file);
 
   try {
     const res = await fetch(`${API_URL}/users/upload-photo`, {
@@ -11,11 +11,19 @@ export const uploadProfilePhoto = async (file, token, setForm, closeModal) => {
       body: formData,
     });
 
-    const data = await res.json();
+    const text = await res.text();
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.error("Non-JSON response:", text);
+      toast.error("Server error (invalid response)");
+      return;
+    }
 
     if (res.ok) {
-      const BASE_URL = process.env.REACT_APP_API_URL.replace("/api", "");
-      const updatedPhoto = BASE_URL + data.photo;
+      const updatedPhoto = data.photo;
 
       setForm((prev) => ({
         ...prev,
@@ -45,7 +53,16 @@ export const removeProfilePhoto = async (token, setForm, closeModal) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    const data = await res.json();
+    const text = await res.text();
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.error("Non-JSON response:", text);
+      toast.error("Server error (invalid response)");
+      return;
+    }
 
     if (res.ok) {
       setForm((prev) => ({ ...prev, photo: "" }));
