@@ -10,11 +10,9 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
+        stage('Checkout Repo') {
             steps {
-                git branch: 'master',
-                    url: 'https://github.com/sasunmadhuranga/instagram-clone-aws.git',
-                    credentialsId: 'github-creds'
+                checkout scm
             }
         }
 
