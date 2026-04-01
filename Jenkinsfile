@@ -60,7 +60,7 @@ pipeline {
             }
         }
 
-        // ================= FRONTEND =================
+        // ================== FRONTEND ==================
 
         stage('Build Frontend') {
             steps {
