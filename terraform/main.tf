@@ -1,6 +1,3 @@
-########################################
-# VPC Module
-########################################
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.0"
@@ -29,9 +26,6 @@ module "vpc" {
   }
 }
 
-########################################
-# EKS Cluster Module
-########################################
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "20.0.0"
@@ -71,18 +65,12 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 }
 
-########################################
-# ECR Repositories
-########################################
 resource "aws_ecr_repository" "backend" {
   name         = "mern-instagram-backend"
   force_delete = true
 }
 
 
-########################################
-# Media S3 Bucket
-########################################
 resource "aws_s3_bucket" "media_bucket" {
   bucket        = "mern-instagram-media-123745-bucket"
   force_destroy = true
@@ -124,9 +112,6 @@ resource "aws_s3_bucket_cors_configuration" "media_cors" {
   }
 }
 
-########################################
-# Frontend S3 Bucket (Static Hosting)
-########################################
 resource "aws_s3_bucket" "frontend" {
   bucket        = "mern-instagram-frontend-1237ft45"
   force_destroy = true
@@ -171,9 +156,6 @@ resource "aws_s3_bucket_policy" "frontend_public" {
   })
 }
 
-########################################
-# IAM Policy for S3 Access
-########################################
 resource "aws_iam_policy" "s3_access" {
   name = "s3-access-policy"
 
@@ -189,9 +171,7 @@ resource "aws_iam_policy" "s3_access" {
   })
 }
 
-########################################
-# ALB Controller IRSA for EKS
-########################################
+
 module "alb_controller_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
