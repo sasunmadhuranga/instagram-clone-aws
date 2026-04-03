@@ -25,6 +25,8 @@ terraform/crash.log
 terraform/*.tfplan
 terraform/*.zip
 terraform/.DS_Store
+terraform.tfstate.1775045850.backup
+.terraform.lock.hcl
 
 # ================================
 # General OS & IDE files
