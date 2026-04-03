@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 630596767614.dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend:latest
+          image: ..............dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend:latest
           ports:
             - containerPort: 5000
           env:

@@ -1,4 +1,3 @@
-// middleware/uploadProfile.js
 import createS3Upload from "./s3Upload.js";
 
 const uploadProfile = createS3Upload(

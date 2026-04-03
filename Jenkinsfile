@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION = "us-east-1"
-        ECR_REPO = "630596767614.dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend"
+        ECR_REPO = "...............dkr.ecr.us-east-1.amazonaws.com/mern-instagram-backend"
         IMAGE_TAG = "${BUILD_NUMBER}"
         AWS_BUCKET_NAME = "mern-instagram-frontend-1237ft45"
         REACT_APP_API_URL = "http://k8s-default-backendi-c43ba1e474-103569890.us-east-1.elb.amazonaws.com/api"
